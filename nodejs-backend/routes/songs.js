@@ -219,18 +219,18 @@ router.get('/', [
     console.log(`🎵 Returning ${songs.length} songs from APIs (total: ${totalSongs})`);
     
     return res.status(200).json({
-    status: 'success',
+      status: 'success',
       message: 'Songs retrieved successfully',
-    data: {
-      songs,
-      pagination: {
+      data: {
+        songs,
+        pagination: {
           current: 1,
           total: 1,
           limit: totalSongs,
           skip: 0,
           totalSongs
-      },
-      filters: {
+        },
+        filters: {
           search: search || '',
           mood: mood || '',
           genre: genre || ''
@@ -371,14 +371,6 @@ router.get('/', [
       source: 'fallback'
     }
   });
-
-  } catch (error) {
-    console.error('❌ Error fetching songs:', error.message);
-    res.status(500).json({
-      status: 'error',
-      message: 'Internal server error while fetching songs'
-    });
-  }
 });
 
 // Fallback songs function for when APIs fail
@@ -415,16 +407,16 @@ function getFallbackSongs(searchTerm = '', limit = 20) {
         album: album,
         albumArt: `https://picsum.photos/300/300?random=${i + 1}`,
         album_art_url: `https://picsum.photos/300/300?random=${i + 1}`,
-      preview_url: null,
+        preview_url: null,
         duration: Math.floor(Math.random() * 300) + 120,
         popularity: Math.floor(Math.random() * 30) + 70,
         playCount: Math.floor(Math.random() * 100000) + 1000,
         likeCount: Math.floor(Math.random() * 10000) + 100,
         source: 'fallback_popular',
-      isActive: true,
+        isActive: true,
         mood: ['energetic', 'upbeat', 'chill', 'danceable'][i % 4],
         genre: ['pop', 'hip-hop', 'rock', 'electronic'][i % 4],
-      createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString()
       });
     }
   } else {
@@ -985,4 +977,4 @@ router.get('/analytics/overview', async (req, res) => {
   }
 });
 
-module.exports = router; 
+module.exports = router;
